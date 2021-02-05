@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface IAdminService {
 
-    RespBean login(String username, String password, HttpServletRequest request);
+    RespBean login( String username, String password, String code,HttpServletRequest request);
 
     Admin getAdminByUsername(String username);
 }

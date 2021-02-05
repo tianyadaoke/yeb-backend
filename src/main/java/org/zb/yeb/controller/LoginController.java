@@ -3,6 +3,7 @@ package org.zb.yeb.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.zb.yeb.VO.AdminLoginParam;
 import org.zb.yeb.entity.Admin;
@@ -17,8 +18,8 @@ public class LoginController {
     @Autowired
     private IAdminService adminService;
     @PostMapping("/login")
-    public RespBean login(AdminLoginParam adminLoginParam, HttpServletRequest request){
-        return adminService.login(adminLoginParam.getUsername(),adminLoginParam.getPassword(),request);
+    public RespBean login(@RequestBody AdminLoginParam adminLoginParam, HttpServletRequest request){
+        return adminService.login(adminLoginParam.getUsername(),adminLoginParam.getPassword(),adminLoginParam.getCode(),request);
     }
     @PostMapping("/logout")
     public RespBean logout(){

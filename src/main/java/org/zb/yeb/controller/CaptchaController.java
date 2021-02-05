@@ -1,6 +1,7 @@
 package org.zb.yeb.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 @RestController
+@Slf4j
 public class CaptchaController {
     @Autowired
     DefaultKaptcha defaultKaptcha;
@@ -27,6 +29,7 @@ public class CaptchaController {
         //---------------------------生成验证码----------------------
         //获取验证码文本内容
         String text = defaultKaptcha.createText();
+        log.info("验证码为:"+text);
         //将验证码放到session中
         request.getSession().setAttribute("captcha",text);
         //根据文本内容创建图形验证码
